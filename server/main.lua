@@ -21,11 +21,13 @@ end, false)
 ESX.RegisterServerCallback('dogscript:getpet', function(source, cb)
 
   local xPlayer = ESX.GetPlayerFromId(source)
-  print(playerId)
-  exports.oxmysql:query('SELECT * FROM users WHERE identifier = @identifier', { ['@identifier'] = xPlayer.identifier}, function(result)
+  --print(playerId)
+  MySQL.Async.fetchAll('SELECT * from users WHERE identifier = @identifier', {
+		['@identifier'] = xPlayer.identifier,
+	},function(result)
     if result then
       for _, v in pairs(result) do
-          print(v.pet)
+         -- print(v.pet)
           cb(v.pet)
       end
     end
