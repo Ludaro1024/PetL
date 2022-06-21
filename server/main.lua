@@ -3,7 +3,7 @@ Config.Mysql = "oxmysql"
 ESX = nil
 TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 
-
+--[[
 if Config.Debug then
   RegisterCommand("test", function(source, args, rawCommand)
     local playerId, identifier = GetPlayerIdentifier(source)
@@ -18,7 +18,7 @@ if Config.Debug then
     end)
 end, false)
 end
-
+]]
 ESX.RegisterServerCallback('dogscript:getpet', function(source, cb)
 
   local xPlayer = ESX.GetPlayerFromId(source)
