@@ -4,7 +4,7 @@ ESX = nil
 TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 
 
-
+if Config.Debug then
   RegisterCommand("test", function(source, args, rawCommand)
     local playerId, identifier = GetPlayerIdentifier(source)
     local xPlayer = ESX.GetPlayerFromId(source)
@@ -17,6 +17,7 @@ TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
       end
     end)
 end, false)
+end
 
 ESX.RegisterServerCallback('dogscript:getpet', function(source, cb)
 
