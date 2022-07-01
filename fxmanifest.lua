@@ -6,6 +6,9 @@ description "A Shop!"
 author "Siegenot, Lugeil"
 version "1.0"
 
+shared_scripts {
+	'config.lua'
+}
 client_scripts {
 	'client/*.lua'
 }
