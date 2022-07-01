@@ -37,3 +37,14 @@ Citizen.CreateThread(function()
             end
     end
 end)
+
+function openMenu()
+    mainmenu = NativeUI.CreateMenu(Translation[Config.Locale]['MainMenuname'], Translation[Config.Locale]['MainMenuDesc'])
+    _menuPool:Add(mainmenu)
+	_menuPool:RefreshIndex()
+	_menuPool:MouseControlsEnabled (false)
+	_menuPool:MouseEdgeEnabled (false)
+	_menuPool:ControlDisablingEnabled(false)
+	mainmenu:Visible(true)
+    
+end

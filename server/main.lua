@@ -19,6 +19,7 @@ if Config.Debug then
 end, false)
 end
 ]]
+
 ESX.RegisterServerCallback('dogscript:getpet', function(source, cb)
 
   local xPlayer = ESX.GetPlayerFromId(source)
@@ -31,6 +32,20 @@ ESX.RegisterServerCallback('dogscript:getpet', function(source, cb)
          -- print(v.pet)
           cb(v.pet)
       end
+    end
+  end)
+end)
+
+
+ESX.RegisterServerCallback('dogscript:getpet2', function(source, cb)
+
+  local xPlayer = ESX.GetPlayerFromId(source)
+  --print(playerId)
+  MySQL.Async.fetchAll('SELECT * from pet WHERE identifier = @identifier', {
+		['@identifier'] = xPlayer.identifier,
+	},function(result)
+    if result then
+          cb(true)
     end
   end)
 end)

@@ -6,7 +6,11 @@ Config.Locale = "en"
 Config.Tricks = true  -- TRICKS WILL ONLY WORK WITH  "a_c_chop"  FOR NOW
 Config.PetModel = "a_c_chop" --https://docs.fivem.net/docs/game-references/ped-models/ only there until i fucking do it to get multiple pets,
 
+Config.FoodItems = {
+    -- name is the item name -- type is the type (0 for water 1 for food) -- value is how much it gives (1-100)
+    {name = "waterbottle", type = 0, value= 100}
 
+}
 
 Config.Blip = false
 
@@ -29,6 +33,8 @@ Translation = {
         ['PissR'] = 'Nach Rechts Pissen',
         ['PissL'] = 'Nach Links Pissen',
         ['playded'] = 'Tot spielen',
+        ['MainMenuName'] = 'Haustier-Shop'
+        ['MainMenuDesc'] = 'Hier kannst du dir ein Haustier Kaufen!'
         ['notify'] = 'Haustier-Shop'
     },
     ['en']{
@@ -43,6 +49,8 @@ Translation = {
         ['PissR'] = 'Piss (Right)',
         ['PissL'] = 'Piss (Left)',
         ['playded'] = 'Play Dead!',
+        ['MainMenuName'] = 'Pet-Shop'
+        ['MainMenuDesc'] = 'You can buy your Loyal friend here!'
         ['notify'] = 'Pet-Shop'
     }
 }
