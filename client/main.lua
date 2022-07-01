@@ -39,7 +39,7 @@ if IsEntityAVehicle(hitEntity) then
         local dictionary = "creatures@rottweiler@incar@"
         local animation = "sit"
         SetPedNeverLeavesGroup(idd, false)
-        ClearPedTasksImmediately(idd
+        ClearPedTasksImmediately(idd)
         TaskEnterVehicle(idd, hitEntity, 20000, 0, 1.5, 1, 0)
     end)
     
@@ -47,6 +47,7 @@ end
 
 ESX.TriggerServerCallback('dogscript:getpet', function(pett)
 if idd == nil and pett  then
+
 local rufen = ECM:AddItem(0, Translation[Config.Locale]['Calldog'], function()
     CreatePedd()
     local dictionary = "rcmnigel1c"
@@ -57,6 +58,8 @@ local rufen = ECM:AddItem(0, Translation[Config.Locale]['Calldog'], function()
     Wait(1000)
     StopAnimTask(PlayerPedId(), dictionary, animation, 1.0)
 end)
+else
+    print(pett)
 end
 end)
 if IsEntityAPed(hitEntity) and idd ~= nil and hitEntity ~= idd then
@@ -97,7 +100,7 @@ if hitEntity == idd then
     local itemistes = ECM:AddItem(0, Translation[Config.Locale]['GoHome'], function()
 
         
-        local coords      = worldPosition
+        local coords = worldPosition
             SetPedNeverLeavesGroup(hitEntity, false)
             SetGroupSeparationRange(GroupHandle, 1.9)
             ClearPedTasksImmediately(hitEntity)
@@ -110,9 +113,13 @@ if hitEntity == idd then
 
 local playerPed = PlayerPedId()
 local playerPosition = GetEntityCoords(playerPed)
+end
+end)
 
 
--- calculate the distance between the interaction point in the world and the player
+
+-- calculate the distance between the interaction point in the world and the player 
+--[[
 local distance = #(worldPosition - playerPosition)
 
     if hitEntity == idd  and Config.Tricks then
@@ -189,15 +196,9 @@ TaskPlayAnim(hitEntity, dictionary, animation, 8.0, 0.0, -1, 1, 0, 0, 0, 0)
 isPedDoingAnimation = "yes"
 end
 end
-
+end
 end)
-end
-end
-end) 
-
-
-
-
+]]
 
 
 

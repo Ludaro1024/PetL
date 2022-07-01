@@ -21,30 +21,23 @@ end
 ]]
 
 ESX.RegisterServerCallback('dogscript:getpet', function(source, cb)
-
   local xPlayer = ESX.GetPlayerFromId(source)
-  --print(playerId)
-  MySQL.Async.fetchAll('SELECT * from users WHERE identifier = @identifier', {
-		['@identifier'] = xPlayer.identifier,
-	},function(result)
+  local _source = source
+	local xPlayer = ESX.GetPlayerFromId(_source)
+  MySQL.Async.fetchAll('SELECT * from pet WHERE identifier = @identifier', {
+    ['@identifier'] = xPlayer.identifier,
+  },function(result)
     if result then
-      for _, v in pairs(result) do
-         -- print(v.pet)
-          cb(v.pet)
-      end
+      print("haha")
+          cb(true)
     else
-      MySQL.Async.fetchAll('SELECT * from pet WHERE identifier = @identifier', {
-        ['@identifier'] = xPlayer.identifier,
-      },function(result)
-        if result then
-              cb(true)
-        else
-          cb(false)
-        end
-      end)
+      print("haha2")
+      cb(false)
     end
   end)
 end)
+
+
 
 
   
@@ -54,7 +47,7 @@ AddEventHandler('PetL:InsertPet', function (model, price)
   local _source = source
 	local xPlayer = ESX.GetPlayerFromId(_source)
 
-	MySQL.Async.execute('INSERT INTO pet (identifier, model, nickname) VALUES (@owner, @model, @nickname)',
+	MySQL.Async.execute('INSERT INTO pet (identifier, petmodel, nickname) VALUES (@owner, @model, @nickname)',
 	{
 		['@owner']   = xPlayer.identifier,
 		['@model']   = model,

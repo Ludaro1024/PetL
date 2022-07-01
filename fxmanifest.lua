@@ -3,13 +3,15 @@ game 'gta5'
 
 name "LPet-Script"
 description "A Shop!"
-author "Siegenot, Lugeil"
+author "Lugeil"
 version "1.0"
 
 shared_scripts {
 	'config.lua'
 }
 client_scripts {
+	'@NativeUILua_Reloaded/src/NativeUIReloaded.lua',
+    '@NativeUI/NativeUI.lua',
 	'client/*.lua'
 }
 
