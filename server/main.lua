@@ -43,4 +43,54 @@ ESX.RegisterServerCallback('dogscript:getpet', function(source, cb)
     end
   end)
 end)
+
+
   
+RegisterServerEvent('PetL:InsertPet')
+AddEventHandler('PetL:InsertPet', function (model, price)
+  local xPlayer = ESX.GetPlayerFromId(source)
+  local _source = source
+	local xPlayer = ESX.GetPlayerFromId(_source)
+
+	MySQL.Async.execute('INSERT INTO pet (identifier, model, nickname) VALUES (@owner, @model, @nickname)',
+	{
+		['@owner']   = xPlayer.identifier,
+		['@model']   = model,
+    ['@nickname']   = nickname,
+	}, function ()
+  end)
+ if Config.PayWithBank then
+  xPlayer.removeAccountMoney('bank', price)
+ else
+  xPlayer.removeAccountMoney('bank', price)
+ end
+end)
+
+
+ESX.RegisterServerCallback('PetL:getpetmodel', function(source, cb)
+  local xPlayer = ESX.GetPlayerFromId(source)
+  local _source = source
+	local xPlayer = ESX.GetPlayerFromId(_source)
+  MySQL.Async.fetchAll('SELECT * from pet WHERE identifier = @identifier', {
+    ['@identifier'] = xPlayer.identifier,
+  },function(result)
+    if result then
+          cb(v)
+    end
+  end)
+end)
+
+ESX.RegisterServerCallback('PetL:getpet', function(source, cb)
+  local xPlayer = ESX.GetPlayerFromId(source)
+  local _source = source
+	local xPlayer = ESX.GetPlayerFromId(_source)
+  MySQL.Async.fetchAll('SELECT * from pet WHERE identifier = @identifier', {
+    ['@identifier'] = xPlayer.identifier,
+  },function(result)
+    if result then
+      for _, v in pairs(result) do
+         cb(v.model)
+      end
+    end
+  end)
+end)

@@ -46,5 +46,41 @@ function openMenu()
 	_menuPool:MouseEdgeEnabled (false)
 	_menuPool:ControlDisablingEnabled(false)
 	mainmenu:Visible(true)
-    
+    local BuyMenu = NativeUI.CreateItem(Translation[Config.Locale]['BuyItemName'], Translation[Config.Locale]['BuyItemDesc'])
+    local SellMenu = NativeUI.CreateItem(Translation[Config.Locale]['SellItemName'], Translation[Config.Locale]['SelItemDesc'])
+    mainmenu:AddItem(BuyMenu)
+    mainmenu:AddItem(SellMenu)
+    Buymenu.Activated = function(sender,index)
+mainmenu:Visible(false)
+buyshopmenu()
+end)
+end
+
+
+function buyshopmenu()
+    buymenu = NativeUI.CreateMenu(Translation[Config.Locale]['BuyMenuname'],nil)
+    _menuPool:Add(buymenu)
+	_menuPool:RefreshIndex()
+	_menuPool:MouseControlsEnabled (false)
+	_menuPool:MouseEdgeEnabled (false)
+	_menuPool:ControlDisablingEnabled(false)
+	buymenu:Visible(true)
+    for k, v in pairs(Config.Pets) do
+        ESX.TriggerServerCallback('PetL:getpetmodel', function(modell)
+            
+        local Pet = NativeUI.CreateItem(v.name, nil)
+        Pet:RightLabel('~b~' .. v.price .. Config.Currency)
+
+        if v.model == model then
+            Pet:Enabled(false)
+        end
+    end)
+    Pet.Activated = function(sender,index)
+    buymenu:Visible(false)
+    notify(Translation[Config.Locale]['Bought'])
+    TriggerServerEvent("PetL:InsertPet", v.model, v.price)
+    end
+end
+end)
+
 end
