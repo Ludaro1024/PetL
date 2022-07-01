@@ -1,10 +1,10 @@
-ALTER TABLE `users` ADD COLUMN IF NOT EXISTS `pet` TINYINT;
-
-CREATE TABLE IF NOT EXISTS `pet` (
+CREATE TABLE `pet` (
   `identifier` varchar(60) NOT NULL,
-  `petmodel` varchar(100) NOT NULL,
-   `food` INT(11) DEFAULT `0`, 
-   `thirst` INT(11) DEFAULT `0`,
-   `nickname`varchar(100),
-  PRIMARY KEY (`identifer`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `petmodel` varchar(60) DEFAULT NULL,
+  `food` int(2) NOT NULL DEFAULT 0,
+  `thirst` int(2) NOT NULL DEFAULT 0,
+  `nickname` varchar(60) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+ALTER TABLE `pet`
+  ADD PRIMARY KEY (`identifier`);
+COMMIT;
