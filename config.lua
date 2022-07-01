@@ -5,10 +5,10 @@ Config.Debug = false -- Does nothing for now
 Config.Locale = "en"
 Config.Tricks = true  -- TRICKS WILL ONLY WORK WITH  "a_c_chop"  FOR NOW
 Config.PetModel = "a_c_chop" --https://docs.fivem.net/docs/game-references/ped-models/ only there until i fucking do it to get multiple pets,
-
-
-Config.Pets = {
-   {name = "Rottweiler", model = "a_c_chop" price = 10}
+Config.PayWithBank = false
+Config.NicknameLength = 12
+Config.Pets = { -- job is for restricted jobs if u want that ;)
+   {name = "Rottweiler", model = "a_c_chop" price = 10, job= nil}
 
 }
 
@@ -51,6 +51,7 @@ Translation = {
         ['BuyItemName'] = 'Haustier-Kaufen',
         ['BuyItemDesc'] = 'Hier kannst du dein Haustier holen! <3',
         ['Bought'] = 'Du hast ein Haustier gekauft! <3',
+        ['ChooseNickname'] = 'Gib deinem Haustier ein Spitzname! <3',
         ['SellItemName'] = 'Haustier-verkaufen',
         ['SellItemDesc'] = 'Hier kannst du dein Haustier Zurrückgeben ;('
     },
@@ -72,6 +73,7 @@ Translation = {
         ['BuyItemName'] = 'Buy a Pet!',
         ['Bought'] = 'You Bought a Pet! <3',
         ['BuyItemDesc'] = 'you can get a Pet here! <3',
+        ['ChooseNickname'] = 'Give your Pet a Nickname!',
         ['SellItemName'] = 'Sell your Pet!',
         ['SellItemDesc'] = 'you can give back your pet here ;('
         ['notify'] = 'Press ~INPUT_CONTEXT~ to open the Pet-Shop'

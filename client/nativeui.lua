@@ -66,19 +66,34 @@ function buyshopmenu()
 	_menuPool:ControlDisablingEnabled(false)
 	buymenu:Visible(true)
     for k, v in pairs(Config.Pets) do
-        ESX.TriggerServerCallback('PetL:getpetmodel', function(modell)
+        ESX.TriggerServerCallback('PetL:getpetmodel', function(modell, job)
             
         local Pet = NativeUI.CreateItem(v.name, nil)
+        buymenu:AddItem(Pet)
         Pet:RightLabel('~b~' .. v.price .. Config.Currency)
 
-        if v.model == model then
+        if v.model == modell then
+            Pet:Enabled(false)
+        end
+        if v.job ~= nil and v.job == job then
             Pet:Enabled(false)
         end
     end)
+
     Pet.Activated = function(sender,index)
     buymenu:Visible(false)
+    local Text =  Translation[Config.Locale]['ChooseNickname']
+AddTextEntry(Text, Text)
+DisplayOnscreenKeyboard(1, Text, "", "", "", "", "", Config.NicknameLength)  
+        while(UpdateOnscreenKeyboard() == 0) do
+            DisableAllControlActions(0);
+            Wait(0);
+        end
+        if(GetOnscreenKeyboardResult()) then
+            result = GetOnscreenKeyboardResult()
+        end
     notify(Translation[Config.Locale]['Bought'])
-    TriggerServerEvent("PetL:InsertPet", v.model, v.price)
+    TriggerServerEvent("PetL:InsertPet", v.model, v.price, nickname)
     end
 end
 end)
