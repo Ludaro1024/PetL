@@ -1,20 +1,16 @@
-fx_version 'cerulean'
-game 'gta5'
 
-name "LPet-Script"
-description "A Shop!"
-author "Siegenot, Lugeil"
-version "1.0"
+fx_version('cerulean')
+games({ 'gta5' })
 
-shared_scripts {
-	'config.lua'
-}
-client_scripts {
-	'client/*.lua'
-}
+shared_script('config.lua');
 
-server_scripts {
-	'@mysql-async/lib/MySQL.lua',
-	'@oxmysql/lib/MySQL.lua',
-	'server/*.lua',
-}
+server_scripts({
+    '@oxmysql/lib/MySQL.lua',
+    'server/server.lua'
+});
+
+client_scripts({
+    '@NativeUILua_Reloaded/src/NativeUIReloaded.lua',
+    'client/nativeui.lua',
+    'client/contextmenu.lua'
+});
